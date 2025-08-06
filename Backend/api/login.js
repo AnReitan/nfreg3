@@ -1,4 +1,5 @@
 import mysql from 'mysql2/promise';
+import bcrypt from 'bcryptjs';
 
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', 'https://anreitan.github.io');
@@ -24,19 +25,20 @@ export default async function handler(req, res) {
     });
 
     const [rows] = await connection.execute(
-      'SELECT s_name FROM d_user WHERE s_email = ? AND s_pwn = ?',
-      [email, password]
+      'SELECT s_name, s_pwd FROM d_user WHERE s_email = ?',
+      [email]
     );
 
     await connection.end();
 
-    if (rows.length > 0) {
-      res.status(200).json({ success: true, name: rows[0].s_name });
-    } else {
-      res.status(401).json({ success: false, message: 'Feil brukernavn eller passord' });
+    if (rows.length === 0) {
+      return res.status(401).json({ success: false, message: 'Feil brukernavn eller passord' });
     }
-  } catch (error) {
-    console.error('DB error:', error);
-    res.status(500).json({ error: 'Databasefeil' });
-  }
-}
+
+    const bruker = rows[0];
+    const passordOK = await bcrypt.compare(password, bruker.s_pwn);
+
+    if (passordOK) {
+      res.status(200).json({ success: true, name: bruker.s_name });
+    } else {
+      res.status(401).json({ success: false, m
