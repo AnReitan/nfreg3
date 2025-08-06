@@ -48,7 +48,7 @@ export default async function handler(req, res) {
     console.log('✅ Passord riktig?', passordOK);
 
     if (!passordOK) {
-      return res.status(402).json({ success: false, message: 'Feil brukernavn ELLER passord' });
+      return res.status(401).json({ success: false, message: 'Feil brukernavn ELLER passord' });
     }
 
     return res.status(200).json({ success: true, name: bruker.s_name });
