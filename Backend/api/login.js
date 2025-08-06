@@ -38,7 +38,13 @@ export default async function handler(req, res) {
     const bruker = rows[0];
     const passordOK = await bcrypt.compare(password, bruker.s_pwn);
 
-    if (passordOK) {
+  if (passordOK) {
       res.status(200).json({ success: true, name: bruker.s_name });
     } else {
-      res.status(401).json({ success: false, m
+      res.status(401).json({ success: false, message: 'Feil brukernavn eller passord' });
+    }
+  } catch (error) {
+    console.error('DB error:', error);
+    res.status(500).json({ error: 'Databasefeil' });
+  }
+}
