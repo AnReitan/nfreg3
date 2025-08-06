@@ -28,7 +28,7 @@ export default async function handler(req, res) {
     });
 
     const [rows] = await connection.execute(
-      'SELECT s_name, s_pwn FROM d_user WHERE s_email = ?',
+      'SELECT s_name, s_pwd FROM d_user WHERE s_email = ?',
       [email]
     );
 
