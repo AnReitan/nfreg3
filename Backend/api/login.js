@@ -43,8 +43,8 @@ export default async function handler(req, res) {
 
     const bruker = rows[0];
 
-    console.log('🔍 Sammenligner passord med hash:', bruker.s_pwn);
-    const passordOK = await bcrypt.compare(password, bruker.s_pwn);
+    console.log('🔍 Sammenligner passord med hash:', bruker.s_pwd);
+    const passordOK = await bcrypt.compare(password, bruker.s_pwd);
     console.log('✅ Passord riktig?', passordOK);
 
     if (!passordOK) {
