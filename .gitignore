@@ -1,0 +1,15 @@
+# .gitignore
+
+# Node
+node_modules/
+npm-debug.log
+.env
+
+# Vercel / build
+.vercel/
+dist/
+build/
+
+# OS
+.DS_Store
+Thumbs.db
