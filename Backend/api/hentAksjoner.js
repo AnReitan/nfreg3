@@ -11,7 +11,7 @@ export default async function handler(req, res) {
       database: process.env.DB_NAME,
     });
 
-    const [rows] = await connection.execute('SELECT s_code FROM d_aksjon');
+    const [rows] = await connection.execute('SELECT s_codes_description, s_object, dt_date_from, dt_date_to FROM d_aksjon');
     await connection.end();
 
     res.status(200).json(rows);
