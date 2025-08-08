@@ -47,7 +47,7 @@ function Brukere() {
             </tr>
         </thead>
         <tbody>
-            {aksjoner.map((a, index) => (
+            {brukere.map((a, index) => (
             <tr key={index}>
                 <td>
                 <div style={{ fontWeight: 'bold' }}>{a.s_name}</div>
