@@ -55,7 +55,7 @@ function Menu() {
           {bruker?.userlevel >= 2 && (
             <div className="admin-section">
               <h3>Admin</h3>
-              <button className="admin-button" onClick={() => alert('Se brukere')}>
+              <button className="admin-button" onClick={() => navigate('/brukere')}>
                 Se brukere
               </button>
               <button className="admin-button" onClick={() => alert('Legg til bruker')}>

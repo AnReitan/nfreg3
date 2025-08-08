@@ -24,6 +24,14 @@ function App() {
           </ProtectedRoute>
         }
       />
+      <Route
+        path="/brukere"
+        element={
+          <ProtectedRoute>
+            <Brukere />
+          </ProtectedRoute>
+        }
+      />
     </Routes>
   );
 }
