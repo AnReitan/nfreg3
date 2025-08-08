@@ -1,4 +1,6 @@
-//src/login.jsx
+// src/Login.jsx
+// 08.08.2025 - add userlevel in retunrdata
+
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -10,12 +12,30 @@ function Login() {
 
   const handleLogin = async () => {
     setError('');
-    // For demo: godtar brukernavn 'test' og passord 'admin'
-    if (email === 'test' && password === 'admin') {
-      sessionStorage.setItem('bruker', JSON.stringify({ email }));
+
+    try {
+      const response = await fetch('https://nfreg3.vercel.app/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok || !data.success) {
+        setError(data.message || 'Feil brukernavn eller passord');
+        return;
+      }
+
+      // Vellykket innlogging
+      sessionStorage.setItem('bruker', JSON.stringify({ email, name: data.name, userlevel: data }));
       navigate('/menu');
-    } else {
-      setError('Feil brukernavn eller passord');
+
+    } catch (err) {
+      console.error('Innloggingsfeil:', err);
+      setError('Klarte ikke å logge inn. Prøv igjen senere.');
     }
   };
 
