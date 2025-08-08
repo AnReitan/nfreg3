@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 import Login from './Login';
 import Menu from './Menu';
 import Aksjoner from './Aksjoner';
+import Brukere from "./Brukere";
 import ProtectedRoute from './ProtectedRoute';
 
 function App() {
