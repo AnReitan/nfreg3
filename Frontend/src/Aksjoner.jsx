@@ -49,31 +49,32 @@ function Aksjoner() {
 
       <table className="aksjonstabell" border="1">
         <thead>
-          <tr>
-            <th>Kode</th>
+            <tr>
             <th>Aksjon</th>
             <th>Utkalling</th>
             <th>Rediger</th>
-          </tr>
+            </tr>
         </thead>
         <tbody>
-          {aksjoner.map((a, index) => (
+            {aksjoner.map((a, index) => (
             <tr key={index}>
-              <td>{a.s_code}</td>
-              <td>{a.s_description}</td>
-              <td>{formatDate(a.dt_date_from)}</td>
-              <td>
+                <td>
+                <div style={{ fontWeight: 'bold' }}>{a.s_code}</div>
+                <div>{a.s_description}</div>
+                </td>
+                <td>{formatDate(a.dt_date_from)}</td>
+                <td>
                 <button
-                  className="admin-button"
-                  onClick={() => alert(`Rediger ${a.s_code}`)}
+                    className="admin-button"
+                    onClick={() => alert(`Rediger ${a.s_code}`)}
                 >
-                  Rediger
+                    Rediger
                 </button>
-              </td>
+                </td>
             </tr>
-          ))}
+            ))}
         </tbody>
-      </table>
+        </table>
     </div>
   );
 }

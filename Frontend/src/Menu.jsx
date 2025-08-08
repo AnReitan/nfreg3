@@ -7,6 +7,8 @@ function Menu() {
   const [bruker, setBruker] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
+  const visOmInfo = () => {alert(`NF Reg versjon ${import.meta.env.VITE_APP_VERSION}`);
+};
 
   useEffect(() => {
     const data = sessionStorage.getItem('bruker');
@@ -26,14 +28,12 @@ function Menu() {
     <div className="menu-container">
       <header className="topbar">
         <div className="logo">NF Follo</div>
-        <div className="hamburger" onClick={() => setMenuOpen(!menuOpen)}>
-          ☰
-        </div>
+        <div className="hamburger" onClick={() => setMenuOpen(!menuOpen)}>☰</div>
         {menuOpen && (
           <div className="side-menu">
             <button onClick={() => alert('Mine innstillinger')}>Mine innstillinger</button>
             <button onClick={() => alert('Endre passord')}>Endre passord</button>
-            <button onClick={() => alert('Om')}>om NF Reg</button>
+            <button onClick={visOmInfo}>Om NF Reg</button>
             <button onClick={handleLogout}>Logg ut</button>
           </div>
         )}
@@ -47,6 +47,9 @@ function Menu() {
         </button>
         <button className="main-button" onClick={() => alert('Tidligere registreringer')}>
           Se mine tidligere registreringer
+        </button>
+        <button className="main-button" onClick={() => alert('Siste 5 aksjoner')}>
+          Siste 5 aksjoner
         </button>
 
           {bruker?.userlevel >= 2 && (
