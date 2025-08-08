@@ -15,17 +15,22 @@
   padding: 1rem;
   position: relative;
   border-radius: 8px;
+  width: 100%;             /* sørger for at flex tar full bredde */
+  box-sizing: border-box;  /* forhindrer at padding overskrider bredde */
 }
 
 .logo {
   font-size: 1.2rem;
   font-weight: bold;
+  white-space: nowrap;     /* hindrer linjebrekk på logo */
+  flex-shrink: 1;
 }
 
 .hamburger {
   font-size: 1.5rem;
   cursor: pointer;
   user-select: none;
+  flex-shrink: 0;          /* hindrer at den blir presset ned */
 }
 
 /* Side-meny som vises ved hamburger-klikking */

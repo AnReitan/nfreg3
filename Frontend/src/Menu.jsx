@@ -33,6 +33,7 @@ function Menu() {
           <div className="side-menu">
             <button onClick={() => alert('Mine innstillinger')}>Mine innstillinger</button>
             <button onClick={() => alert('Endre passord')}>Endre passord</button>
+            <button onClick={() => alert('Om')}>om NF Reg</button>
             <button onClick={handleLogout}>Logg ut</button>
           </div>
         )}

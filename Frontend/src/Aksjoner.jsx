@@ -25,7 +25,7 @@ function Aksjoner() {
   useEffect(() => {
     const hentAksjoner = async () => {
       try {
-        const res = await fetch('/api/hentAksjoner'); 
+        const res = await fetch('https://nfreg3.vercel.app/api/hentAksjoner'); 
         if (!res.ok) throw new Error('Feil ved henting');
         const data = await res.json();
         setAksjoner(data);
