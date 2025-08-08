@@ -1,4 +1,4 @@
-//src/Aksjoner.jsc
+//src/Aksjoner.jsx
 
 /*
 08.08.2025 - Opprettet

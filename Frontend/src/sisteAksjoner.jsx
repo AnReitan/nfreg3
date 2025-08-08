@@ -1,4 +1,4 @@
-//src/SisteFemAksjoner.jsc
+//src/SisteAksjoner.jsc
 
 /*
 08.08.2025 - Opprettet
