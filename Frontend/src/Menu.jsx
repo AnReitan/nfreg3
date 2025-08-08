@@ -30,8 +30,25 @@ function Menu() {
   };
 
   return (
+<<<<<<< Updated upstream
     <div>
       <h2>Velkommen {bruker?.email}!</h2>
+=======
+    <div className="menu-container">
+      <header className="topbar">
+        <div className="logo">NF Follo - Aksjoner</div>
+        <div className="hamburger" onClick={() => setMenuOpen(!menuOpen)}>
+          ☰
+        </div>
+        {menuOpen && (
+          <div className="side-menu">
+            <button onClick={() => alert('Mine innstillinger')}>Mine innstillinger</button>
+            <button onClick={() => alert('Endre passord')}>Endre passord</button>
+            <button onClick={handleLogout}>Logg ut</button>
+          </div>
+        )}
+      </header>
+>>>>>>> Stashed changes
 
       <button onClick={hentBrukere}>Vis brukere</button>
       <button onClick={handleLogout}>Logg ut</button>

@@ -1,3 +1,5 @@
+// 08.08.2025 - lagt til brukerlevel som returdata
+
 import mysql from 'mysql2/promise';
 import bcrypt from 'bcryptjs';
 
