@@ -1,14 +1,17 @@
+// /api/leggTilBruker.js
+
 import bcrypt from 'bcrypt';
-import pool from './db'; // bruk din eksisterende db-forbindelse
+import pool from './db'; // din eksisterende DB-kobling
 
 export default async function handler(req, res) {
-  // Tillat kun POST
+  // Tillat CORS for GitHub Pages
+  res.setHeader('Access-Control-Allow-Origin', 'https://anreitan.github.io');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+  // Preflight request – MÅ respondere 200
   if (req.method === 'OPTIONS') {
-    res.setHeader('Access-Control-Allow-Origin', 'https://anreitan.github.io');
-    res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-    res.status(200).end();
-    return;
+    return res.status(200).end();
   }
 
   if (req.method !== 'POST') {
@@ -16,11 +19,8 @@ export default async function handler(req, res) {
   }
 
   try {
-    // legg til header her også for selve POST-kallet
-    res.setHeader('Access-Control-Allow-Origin', 'https://anreitan.github.io');
-
-    // Din eksisterende kode
     const { s_name, s_email, s_pwd, s_regno, i_userlevel, b_active } = req.body;
+
     const hashedPwd = await bcrypt.hash(s_pwd, 10);
     const dt_modify = new Date();
 
@@ -41,8 +41,8 @@ export default async function handler(req, res) {
     ]);
 
     return res.status(200).json({ success: true });
-  } catch (error) {
-    console.error('Feil ved opprettelse:', error);
+  } catch (err) {
+    console.error('Feil i leggTilBruker:', err);
     return res.status(500).json({ success: false });
   }
 }
