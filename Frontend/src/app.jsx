@@ -42,6 +42,14 @@ function App() {
           </ProtectedRoute>
         }
       />
+      <Route
+        path="/leggtilbruker"
+        element={
+          <ProtectedRoute>
+            <LeggTilBruker />
+          </ProtectedRoute>
+        }
+      />
     </Routes>
   );
 }

@@ -48,7 +48,7 @@ function Menu() {
         <button className="main-button" onClick={() => alert('Tidligere registreringer')}>
           Se mine tidligere registreringer
         </button>
-        <button className="main-button" onClick={() => alert('Siste 5 aksjoner')}>
+        <button className="main-button"  onClick={() => navigate('/sisteaksjoner')}>
           Siste 5 aksjoner
         </button>
 
@@ -58,7 +58,7 @@ function Menu() {
               <button className="admin-button" onClick={() => navigate('/brukere')}>
                 Se brukere
               </button>
-              <button className="admin-button" onClick={() => alert('Legg til bruker')}>
+              <button className="admin-button" onClick={() => navigate('/leggtilbruker')}>
                 Legg til bruker
               </button>
               <button className="admin-button" onClick={() => navigate('/aksjoner')}>

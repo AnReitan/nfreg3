@@ -20,7 +20,7 @@ export default async function handler(req, res) {
     });
 
     const [rows] = await connection.execute(
-      'SELECT s_name, s_email, s_regno FROM d_user'
+      'SELECT p_key, s_name, s_email, s_regno FROM d_user'
     );
     await connection.end();
 
