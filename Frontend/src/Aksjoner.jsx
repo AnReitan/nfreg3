@@ -22,17 +22,18 @@ function Aksjoner() {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const hentAksjoner = async () => {
-      try {
-        const res = await fetch('https://nfreg3.vercel.app/api/hentAksjoner'); 
-        if (!res.ok) throw new Error('Feil ved henting');
-        const data = await res.json();
-        setAksjoner(data);
-      } catch (err) {
-        setError('Klarte ikke hente aksjoner');
-      }
-    };
+ useEffect(() => {
+  const hentAksjoner = async () => {
+    try {
+      const res = await fetch('https://nfreg3.vercel.app/api/hentAksjoner'); 
+      if (!res.ok) throw new Error('Feil ved henting');
+      const data = await res.json();
+      const sortert = data.sort((a, b) => new Date(b.dt_date_from) - new Date(a.dt_date_from));
+      setAksjoner(sortert);
+    } catch (err) {
+      setError('Klarte ikke hente aksjoner');
+    }
+  };
 
     hentAksjoner();
   }, []);

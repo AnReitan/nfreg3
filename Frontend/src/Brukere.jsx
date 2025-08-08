@@ -69,4 +69,4 @@ function Brukere() {
   );
 }
 
-export default Aksjoner;
+export default Brukere;
