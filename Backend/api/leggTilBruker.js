@@ -2,13 +2,25 @@ import bcrypt from 'bcrypt';
 import pool from './db'; // bruk din eksisterende db-forbindelse
 
 export default async function handler(req, res) {
+  // Tillat kun POST
+  if (req.method === 'OPTIONS') {
+    res.setHeader('Access-Control-Allow-Origin', 'https://anreitan.github.io');
+    res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    res.status(200).end();
+    return;
+  }
+
   if (req.method !== 'POST') {
     return res.status(405).json({ success: false, message: 'Method not allowed' });
   }
 
   try {
-    const { s_name, s_email, s_pwd, s_regno, i_userlevel, b_active } = req.body;
+    // legg til header her også for selve POST-kallet
+    res.setHeader('Access-Control-Allow-Origin', 'https://anreitan.github.io');
 
+    // Din eksisterende kode
+    const { s_name, s_email, s_pwd, s_regno, i_userlevel, b_active } = req.body;
     const hashedPwd = await bcrypt.hash(s_pwd, 10);
     const dt_modify = new Date();
 
