@@ -7,8 +7,8 @@ function Menu() {
   const [bruker, setBruker] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
-  const visOmInfo = () => {alert(`NF Reg versjon ${import.meta.env.VITE_APP_VERSION}`);
-};
+  const visOmInfo = () => {  const versjon = process.env.REACT_APP_VERSION || 'ukjent';  alert(`NF Reg versjon ${versjon}`);};
+
 
   useEffect(() => {
     const data = sessionStorage.getItem('bruker');
