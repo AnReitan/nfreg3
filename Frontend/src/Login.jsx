@@ -30,7 +30,7 @@ function Login() {
       }
 
       // Vellykket innlogging
-      sessionStorage.setItem('bruker', JSON.stringify({ email, name: data.name, userlevel: data }));
+      sessionStorage.setItem('bruker', JSON.stringify({ email, name: data.name, userlevel: data.userlevel }));
       navigate('/menu');
 
     } catch (err) {
