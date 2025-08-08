@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 import Login from './Login';
 import Menu from './Menu';
 import Aksjoner from './Aksjoner';
+import SisteAksjoner from './sisteFemAksjoner';
 import Brukere from "./Brukere";
 import ProtectedRoute from './ProtectedRoute';
 
@@ -22,6 +23,14 @@ function App() {
         element={
           <ProtectedRoute>
             <Aksjoner />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/sisteaksjoner"
+        element={
+          <ProtectedRoute>
+            <SisteAksjoner />
           </ProtectedRoute>
         }
       />
