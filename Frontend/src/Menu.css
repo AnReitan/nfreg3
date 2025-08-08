@@ -105,6 +105,23 @@
   gap: 1rem;
 }
 
+/* Aksjonsvisning */
+.aksjoner-container {
+  padding: 1rem;
+}
+
+.aksjonstabell {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.aksjonstabell th,
+.aksjonstabell td {
+  padding: 0.5rem;
+  text-align: left;
+}
+
 /* Mobiltilpasning */
 @media (max-width: 600px) {
   .topbar {
