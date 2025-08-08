@@ -25,7 +25,7 @@ function Menu() {
   return (
     <div className="menu-container">
       <header className="topbar">
-        <div className="logo">NF FOllo - Registrering</div>
+        <div className="logo">NF Follo - Registrering</div>
         <div className="hamburger" onClick={() => setMenuOpen(!menuOpen)}>
           ☰
         </div>
@@ -48,7 +48,7 @@ function Menu() {
           Se mine tidligere registreringer
         </button>
 
-        {bruker?.i_userlevel >= 2 && (
+        {bruker?.userlevel >= 2 && (
           <div className="admin-section">
             <h3>Admin</h3>
             <button className="admin-button" onClick={() => alert('Se brukere')}>
