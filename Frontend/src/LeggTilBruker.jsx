@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './Registrering.css';
 
 function LeggTilBruker() {
   const navigate = useNavigate();

@@ -30,7 +30,7 @@ function SisteAksjoner() {
       const data = await res.json();
       const sortert = data
         .sort((a, b) => new Date(b.dt_date_from) - new Date(a.dt_date_from)) // Sorter så nyeste kommer øverst
-        .slice(0, 5); // Hent kun de 5 nyeste
+        .slice(0, 6); // Hent kun de 6 nyeste
 setAksjoner(sortert);
     } catch (err) {
       setError('Klarte ikke hente aksjoner');
@@ -42,7 +42,7 @@ setAksjoner(sortert);
 
   return (
     <div className="aksjoner-container">
-      <h2>Aksjoner</h2>
+      <h2>Siste aksjoner</h2>
 
       <button className="main-button" onClick={() => navigate('/menu')}>
         Tilbake til meny
@@ -65,8 +65,6 @@ setAksjoner(sortert);
                 <div>{a.s_description}</div>
                 </td>
                 <td>{formatDate(a.dt_date_from)}</td>
-                <td>
-                </td>
             </tr>
             ))}
         </tbody>
