@@ -30,7 +30,7 @@ export default async function handler(req, res) {
     });
 
     const [rows] = await connection.execute(
-      'SELECT s_name, s_pwd FROM d_user WHERE s_email = ?',
+      'SELECT s_name, s_pwd, i_userlevel FROM d_user WHERE s_email = ?',
       [email]
     );
 
@@ -47,7 +47,7 @@ export default async function handler(req, res) {
     // 1. Sjekk om passordet er lagret i klartekst (f.eks. for testing)
     if (password === bruker.s_pwd) {
       console.log('✅ Passord stemmer i klartekst!');
-      return res.status(200).json({ success: true, name: bruker.s_name });
+      return res.status(200).json({ success: true, name: bruker.s_name, userlevel: bruker.i_userlevel });
     }
 
     // 2. Ellers: sammenlign med hash
@@ -63,7 +63,7 @@ export default async function handler(req, res) {
       return res.status(401).json({ success: false, message: 'Feil brukernavn eller passord' });
     }
 
-    return res.status(200).json({ success: true, name: bruker.s_name });
+    return res.status(200).json({ success: true, name: bruker.s_name, userlevel: bruker.i_userlevel });
 
   } catch (error) {
     console.error('💥 Login-feil:', error);
