@@ -1,7 +1,7 @@
 // /api/leggTilBruker.js
 
 import bcrypt from 'bcrypt';
-import pool from './db'; // din eksisterende DB-kobling
+import mysql from 'mysql2/promise';
 
 export default async function handler(req, res) {
   // Tillat CORS for GitHub Pages
@@ -30,15 +30,24 @@ export default async function handler(req, res) {
       VALUES (?, ?, ?, ?, ?, ?, ?)
     `;
 
-    await pool.query(query, [
-      s_name,
-      s_email,
-      hashedPwd,
-      s_regno || null,
-      i_userlevel || 1,
-      b_active || 1,
-      dt_modify,
-    ]);
+const connection = await mysql.createConnection({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASS,
+  database: process.env.DB_NAME,
+});
+
+await connection.execute(query, [
+  s_name,
+  s_email,
+  hashedPwd,
+  s_regno || null,
+  i_userlevel || 1,
+  b_active || 1,
+  dt_modify,
+]);
+
+await connection.end();
 
     return res.status(200).json({ success: true });
   } catch (err) {
