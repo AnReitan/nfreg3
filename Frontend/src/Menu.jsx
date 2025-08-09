@@ -55,12 +55,15 @@ function Menu() {
         setNewPassword('');
         setShowChangePassword(false);
       } else {
-        setMessage(data.message || 'Feil ved endring av passord');
+        setMessage(data.message || data.error || 'Feil ved endring av passord');
       }
     } catch (err) {
       setMessage('Noe gikk galt, prøv igjen senere');
     }
   };
+
+
+  
 
   return (
     <div className="menu-container">
