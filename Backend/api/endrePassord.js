@@ -4,13 +4,13 @@ import mysql from 'mysql2/promise';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
-console.log('Request body:', req.body);
-
 export default async function handler(req, res) {
   // CORS (endre til ditt domene)
   res.setHeader('Access-Control-Allow-Origin', 'https://anreitan.github.io');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+
+console.log('Request body:', req.body);
 
   if (req.method === 'OPTIONS') {
     return res.status(200).end();
