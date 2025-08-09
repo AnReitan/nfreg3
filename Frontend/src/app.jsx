@@ -1,10 +1,10 @@
 import { Routes, Route } from 'react-router-dom';
 import Login from './Login';
 import Menu from './Menu';
-import Aksjoner from './Aksjoner';
+import Aksjoner from './components/Aksjoner';
 import SisteAksjoner from './components/sisteAksjoner';
-import LeggTilBruker from './LeggTilBruker';
-import Brukere from "./Brukere";
+import LeggTilBruker from './components/LeggTilBruker';
+import Brukere from "./components/Brukere";
 import ProtectedRoute from './ProtectedRoute';
 
 function App() {
