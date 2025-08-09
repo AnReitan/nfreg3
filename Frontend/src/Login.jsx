@@ -32,11 +32,12 @@ function Login() {
       // Vellykket innlogging
       sessionStorage.setItem('token', data.token);
       sessionStorage.setItem('bruker', JSON.stringify({
-        id: data.id,         // unik ID fra backend, f.eks. '123'
-        email: data.email,
-        name: data.name,
-        userlevel: data.userlevel
+        id: data.user.id,
+        email: data.user.email,
+        name: data.user.name,
+        userlevel: data.user.userlevel
       }));
+
       navigate('/menu');
 
     } catch (err) {
