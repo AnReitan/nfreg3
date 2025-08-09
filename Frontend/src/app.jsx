@@ -2,7 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 import Login from './Login';
 import Menu from './Menu';
 import Aksjoner from './Aksjoner';
-import SisteAksjoner from './sisteAksjoner';
+import SisteAksjoner from '.components/sisteAksjoner';
 import LeggTilBruker from './LeggTilBruker';
 import Brukere from "./Brukere";
 import ProtectedRoute from './ProtectedRoute';
