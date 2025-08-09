@@ -52,7 +52,7 @@ export default async function handler(req, res) {
 
     // Kjør SQL-insert
     await db.query(
-      `INSERT INTO b_users
+      `INSERT INTO d_users
         (s_name, s_email, s_pwd, s_regno, i_userlevel, b_active, dt_modify)
        VALUES (?, ?, ?, ?, ?, ?, ?)`,
       [
