@@ -4,6 +4,7 @@
   "type": "module",
   "dependencies": {
     "bcryptjs": "^3.0.2",
+    "jsonwebtoken": "^9.0.2",
     "mysql2": "^3.0.0",
     "serverless-mysql": "^2.1.0"
   }
