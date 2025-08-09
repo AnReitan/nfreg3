@@ -70,10 +70,10 @@ export default async function handler(req, res) {
     // Lag JWT-token
     const token = jwt.sign(
       {
-        id: bruker.id,
+        id: bruker.p_key,
         name: bruker.s_name,
         userlevel: bruker.i_userlevel,
-        email,
+        email: bruker.s_email,
       },
       process.env.JWT_SECRET,
       { expiresIn: '8h' }
