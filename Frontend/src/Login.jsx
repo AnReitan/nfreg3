@@ -18,6 +18,7 @@ function Login() {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
         },
         body: JSON.stringify({ email, password }),
       });
@@ -30,7 +31,13 @@ function Login() {
       }
 
       // Vellykket innlogging
-      sessionStorage.setItem('bruker', JSON.stringify({ email, name: data.name, userlevel: data.userlevel }));
+      sessionStorage.setItem('token', data.token);
+      sessionStorage.setItem('bruker', JSON.stringify({
+        id: data.id,         // unik ID fra backend, f.eks. '123'
+        email: data.email,
+        name: data.name,
+        userlevel: data.userlevel
+      }));
       navigate('/menu');
 
     } catch (err) {
