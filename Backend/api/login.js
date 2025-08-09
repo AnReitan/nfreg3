@@ -83,10 +83,10 @@ export default async function handler(req, res) {
       success: true,
       token,
       user: {
-        id: bruker.id,
+        id: bruker.p_key,
         name: bruker.s_name,
         userlevel: bruker.i_userlevel,
-        email,
+        email: bruker.s_email,
       },
     });
   } catch (error) {
