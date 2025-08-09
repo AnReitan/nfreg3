@@ -1,7 +1,7 @@
 {
   "name": "nfreg3-frontend",
   "homepage": "https://anreitan.github.io/nfreg3",
-  "version": "0.2.3",
+  "version": "0.2.5",
   "private": true,
   "dependencies": {
     "react": "^18.2.0",
