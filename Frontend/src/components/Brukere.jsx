@@ -16,7 +16,11 @@ function Brukere() {
   useEffect(() => {
     const hentBrukere = async () => {
       try {
-        const res = await fetch('https://nfreg3.vercel.app/api/getUsers'); 
+        const res = await fetch('https://nfreg3.vercel.app/api/getUsers', {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      },
+    });
         if (!res.ok) throw new Error('Feil ved henting');
         const data = await res.json();
         setBrukere(data);

@@ -24,7 +24,7 @@ function LeggTilBruker() {
 
     const response = await fetch('https://nfreg3.vercel.app/api/leggTilBruker', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json' , 'Authorization': `Bearer ${token}`},
       body: JSON.stringify(formData),
     });
 
