@@ -1,8 +1,12 @@
 // /api/leggTilBruker.js
+
+/*
+09.08.2025 - Oppdatere til serverless MySQL
+*/
+
 import bcrypt from 'bcrypt';
 import mysql from 'serverless-mysql';
 
-// Sett opp serverless MySQL-tilkobling
 const db = mysql({
   config: {
     host: process.env.DB_HOST,
@@ -12,17 +16,13 @@ const db = mysql({
   },
 });
 
-// Hjelpefunksjon for CORS
-function cors(res) {
+export default async function handler(req, res) {
+  // CORS headere
   res.setHeader('Access-Control-Allow-Origin', 'https://anreitan.github.io');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-}
 
-export default async function handler(req, res) {
-  cors(res);
-
-  // Preflight-svar
+  // Svar på preflight **før alt annet**
   if (req.method === 'OPTIONS') {
     return res.status(200).end();
   }
@@ -41,28 +41,17 @@ export default async function handler(req, res) {
     const hashedPwd = await bcrypt.hash(s_pwd, 10);
     const dt_modify = new Date();
 
-    const query = `
-      INSERT INTO b_users 
-      (s_name, s_email, s_pwd, s_regno, i_userlevel, b_active, dt_modify) 
-      VALUES (?, ?, ?, ?, ?, ?, ?)
-    `;
-
-    await db.query(query, [
-      s_name,
-      s_email,
-      hashedPwd,
-      s_regno || null,
-      i_userlevel || 1,
-      b_active || 1,
-      dt_modify,
-    ]);
+    await db.query(
+      `INSERT INTO b_users (s_name, s_email, s_pwd, s_regno, i_userlevel, b_active, dt_modify)
+       VALUES (?, ?, ?, ?, ?, ?, ?)`,
+      [s_name, s_email, hashedPwd, s_regno || null, i_userlevel || 1, b_active || 1, dt_modify]
+    );
 
     return res.status(200).json({ success: true });
   } catch (err) {
     console.error('❌ Feil i leggTilBruker:', err);
     return res.status(500).json({ success: false, error: err.message });
   } finally {
-    // Sørg for at tilkoblingen alltid lukkes
     await db.end();
   }
 }
