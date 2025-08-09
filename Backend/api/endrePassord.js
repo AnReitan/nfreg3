@@ -4,6 +4,8 @@ import mysql from 'mysql2/promise';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
+console.log('Request body:', req.body);
+
 export default async function handler(req, res) {
   // CORS (endre til ditt domene)
   res.setHeader('Access-Control-Allow-Origin', 'https://anreitan.github.io');
