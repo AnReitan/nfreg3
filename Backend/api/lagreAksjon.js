@@ -20,7 +20,10 @@ export default async function handler(req, res) {
   const token = authHeader.split(' ')[1];
 
   try {
-    jwt.verify(token, process.env.JWT_SECRET);
+    // Verifiser token og hent userId (p_key fra d_user)
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const r_user = decoded.userId;
+
     const b = req.body;
 
     const connection = await mysql.createConnection({
@@ -30,12 +33,13 @@ export default async function handler(req, res) {
       database: process.env.DB_NAME,
     });
 
-    // tr_innsats
+    // tr_innsats – nå med r_user
     const [innsats] = await connection.execute(
       `INSERT INTO tr_innsats
-      (r_aksjon, dt_from, dt_to, b_food, s_regno, i_km, i_pass, s_namePass, i_kmPass, b_payout, s_comment)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      (r_user, r_aksjon, dt_from, dt_to, b_food, s_regno, i_km, i_pass, s_namePass, i_kmPass, b_payout, s_comment)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
+        r_user,
         b.r_aksjon, b.dt_from, b.dt_to, b.b_food ? 1 : 0, b.s_regno,
         b.i_km || 0, b.i_pass || 0, b.s_namePass || null, b.i_kmPass || 0,
         b.b_payout ? 1 : 0, b.s_comment || null
@@ -44,7 +48,7 @@ export default async function handler(req, res) {
 
     const innsatsId = innsats.insertId;
 
-    // tr_utstyr (gjenbruk funksjon)
+    // Funksjon for å legge inn utstyr
     const utstyrInsert = async (r_utstyr, km, hours) => {
       if (!r_utstyr) return;
       await connection.execute(
