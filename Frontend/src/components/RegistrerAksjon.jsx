@@ -212,7 +212,7 @@ function RegistrerAksjon() {
         <div style={{ display: 'flex', gap: '0.5rem', marginTop: '1rem' }}>
         <button
             type="button"
-            onClick={() => navigate('/')}
+            onClick={() => navigate('/menu')}
             style={{
             flex: 1,
             backgroundColor: '#888',
