@@ -22,7 +22,7 @@ export default async function handler(req, res) {
   try {
     // Verifiser token og hent userId (p_key fra d_user)
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    const r_user = decoded.userId;
+    const r_user = decoded.id;
 
     const b = req.body;
 
