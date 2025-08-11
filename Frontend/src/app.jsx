@@ -5,52 +5,19 @@ import Aksjoner from './components/Aksjoner';
 import SisteAksjoner from './components/sisteAksjoner';
 import LeggTilBruker from './components/LeggTilBruker';
 import Brukere from "./components/Brukere";
+import RegistrerAksjon from './components/RegistrerAksjon';
 import ProtectedRoute from './ProtectedRoute';
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<Login />} />
-      <Route
-        path="/menu"
-        element={
-          <ProtectedRoute>
-            <Menu />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/aksjoner"
-        element={
-          <ProtectedRoute>
-            <Aksjoner />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/sisteaksjoner"
-        element={
-          <ProtectedRoute>
-            <SisteAksjoner />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/brukere"
-        element={
-          <ProtectedRoute>
-            <Brukere />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/leggtilbruker"
-        element={
-          <ProtectedRoute>
-            <LeggTilBruker />
-          </ProtectedRoute>
-        }
-      />
+      <Route path="/menu"             element={ <ProtectedRoute> <Menu />             </ProtectedRoute> } />
+      <Route path="/registreraksjon"  element={ <ProtectedRoute> <RegistrerAksjon />  </ProtectedRoute> } />
+      <Route path="/aksjoner"         element={ <ProtectedRoute> <Aksjoner />         </ProtectedRoute> } />
+      <Route path="/sisteaksjoner"    element={ <ProtectedRoute> <SisteAksjoner />    </ProtectedRoute> } />
+      <Route path="/brukere"          element={ <ProtectedRoute> <Brukere />          </ProtectedRoute> } />
+      <Route path="/leggtilbruker"    element={ <ProtectedRoute> <LeggTilBruker />    </ProtectedRoute> } />
     </Routes>
   );
 }

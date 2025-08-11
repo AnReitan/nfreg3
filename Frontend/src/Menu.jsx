@@ -63,8 +63,6 @@ function Menu() {
   };
 
 
-  
-
   return (
     <div className="menu-container">
       <header className="topbar">
@@ -86,8 +84,8 @@ function Menu() {
       <main className="main-menu">
         <h2>Velkommen, {bruker?.name}</h2>
 
-        <button className="main-button" onClick={() => alert('Register aksjon')}>
-          Register aksjon
+        <button className="main-button" onClick={() => navigate('/registreraksjon')}>
+          Registrer aksjon
         </button>
         <button className="main-button" onClick={() => alert('Tidligere registreringer')}>
           Se mine tidligere registreringer
