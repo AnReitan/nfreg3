@@ -34,11 +34,11 @@ function RegistrerAksjon() {
   useEffect(() => {
     const token = sessionStorage.getItem('token');
     Promise.all([
-      fetch('/api/getAktiveAksjoner', { headers: { Authorization: `Bearer ${token}` } }).then(r => r.json()),
-      fetch('/api/getUtstyr?type=1', { headers: { Authorization: `Bearer ${token}` } }).then(r => r.json()),
-      fetch('/api/getUtstyr?type=2', { headers: { Authorization: `Bearer ${token}` } }).then(r => r.json()),
-      fetch('/api/getUtstyr?type=3', { headers: { Authorization: `Bearer ${token}` } }).then(r => r.json()),
-      fetch('/api/getBrukerinfo', { headers: { Authorization: `Bearer ${token}` } }).then(r => r.json())
+      fetch('https://nfreg3.vercel.app/api/getAktiveAksjoner', { headers: { Authorization: `Bearer ${token}` } }).then(r => r.json()),
+      fetch('https://nfreg3.vercel.app/api/getUtstyr?type=1', { headers: { Authorization: `Bearer ${token}` } }).then(r => r.json()),
+      fetch('https://nfreg3.vercel.app/api/getUtstyr?type=2', { headers: { Authorization: `Bearer ${token}` } }).then(r => r.json()),
+      fetch('https://nfreg3.vercel.app/api/getUtstyr?type=3', { headers: { Authorization: `Bearer ${token}` } }).then(r => r.json()),
+      fetch('https://nfreg3.vercel.app/api/getBrukerinfo', { headers: { Authorization: `Bearer ${token}` } }).then(r => r.json())
     ]).then(([aks, lag, ter, dro, bruk]) => {
       setAksjoner(aks);
       setLagsbil(lag);
@@ -57,7 +57,7 @@ function RegistrerAksjon() {
   const handleSubmit = async e => {
     e.preventDefault();
     const token = sessionStorage.getItem('token');
-    const res = await fetch('/api/lagreAksjon', {
+    const res = await fetch('https://nfreg3.vercel.app/api/lagreAksjon', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
