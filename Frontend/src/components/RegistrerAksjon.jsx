@@ -32,6 +32,7 @@ function RegistrerAksjon() {
   });
 
   useEffect(() => {
+    const API_BASE = process.env.REACT_APP_API_BASE; // <- henter fra .env
     const token = sessionStorage.getItem('token');
     Promise.all([
       fetch(`${API_BASE}/getAktiveAksjoner`, { headers: { Authorization: `Bearer ${token}` } }).then(r => r.json()),
@@ -57,6 +58,7 @@ function RegistrerAksjon() {
 
   const handleSubmit = async e => {
     e.preventDefault();
+    const API_BASE = process.env.REACT_APP_API_BASE; // <- henter fra .env
     const token = sessionStorage.getItem('token');
     const res = await fetch(`${API_BASE}/lagreAksjon`, {
       method: 'POST',
@@ -207,7 +209,32 @@ function RegistrerAksjon() {
           <input type="text" name="s_comment" value={form.s_comment} onChange={handleChange} />
         </label>
 
-        <button type="submit" className="main-button">Lagre</button>
+        <div style={{ display: 'flex', gap: '0.5rem', marginTop: '1rem' }}>
+        <button
+            type="button"
+            onClick={() => navigate('/')}
+            style={{
+            flex: 1,
+            backgroundColor: '#888',
+            color: 'white',
+            borderRadius: '6px',
+            fontSize: '1rem',
+            cursor: 'pointer',
+            padding: '0.6rem',
+            border: 'none',
+            }}
+        >
+            Avbryt
+        </button>
+
+        <button
+            type="submit"
+            className="main-button"
+            style={{ flex: 2 }}
+        >
+            Lagre
+        </button>
+        </div>
       </form>
     </div>
   );
