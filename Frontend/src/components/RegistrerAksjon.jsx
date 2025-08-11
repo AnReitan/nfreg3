@@ -34,11 +34,11 @@ function RegistrerAksjon() {
   useEffect(() => {
     const token = sessionStorage.getItem('token');
     Promise.all([
-      fetch('${API_BASE}/getAktiveAksjoner', { headers: { Authorization: `Bearer ${token}` } }).then(r => r.json()),
-      fetch('${API_BASE}/getUtstyr?type=1', { headers: { Authorization: `Bearer ${token}` } }).then(r => r.json()),
-      fetch('${API_BASE}/getUtstyr?type=2', { headers: { Authorization: `Bearer ${token}` } }).then(r => r.json()),
-      fetch('${API_BASE}/getUtstyr?type=3', { headers: { Authorization: `Bearer ${token}` } }).then(r => r.json()),
-      fetch('${API_BASE}/getBrukerinfo', { headers: { Authorization: `Bearer ${token}` } }).then(r => r.json())
+      fetch(`${API_BASE}/getAktiveAksjoner`, { headers: { Authorization: `Bearer ${token}` } }).then(r => r.json()),
+      fetch(`${API_BASE}/getUtstyr?type=1`, { headers: { Authorization: `Bearer ${token}` } }).then(r => r.json()),
+      fetch(`${API_BASE}/getUtstyr?type=2`, { headers: { Authorization: `Bearer ${token}` } }).then(r => r.json()),
+      fetch(`${API_BASE}/getUtstyr?type=3`, { headers: { Authorization: `Bearer ${token}` } }).then(r => r.json()),
+      fetch(`${API_BASE}/getBrukerinfo`, { headers: { Authorization: `Bearer ${token}` } }).then(r => r.json())
       
     ]).then(([aks, lag, ter, dro, bruk]) => {
       setAksjoner(aks);
@@ -58,7 +58,7 @@ function RegistrerAksjon() {
   const handleSubmit = async e => {
     e.preventDefault();
     const token = sessionStorage.getItem('token');
-    const res = await fetch('https://nfreg3.vercel.app/api/lagreAksjon', {
+    const res = await fetch(`${API_BASE}/lagreAksjon`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
